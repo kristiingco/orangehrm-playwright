@@ -1,4 +1,4 @@
 const VALID_USERNAME = "Admin";
 const VALID_PASSWORD = "admin123";
 
-export { VALID_USERNAME, VALID_PASSWORD };
+export default { VALID_USERNAME, VALID_PASSWORD };
