@@ -37,4 +37,14 @@ test.describe("Login and Authentication", () => {
         await loginPage.login(VALID_USERNAME, INVALID_PASSWORD);
         await loginPage.assertInvalidCredentialsErrorMessageVisible();
     });
+
+    test("No username provided", async () => {
+        await loginPage.login(" ", VALID_PASSWORD);
+        await loginPage.assertRequiredErrorMessageVisible();
+    });
+
+    test("No password provided", async () => {
+        await loginPage.login(VALID_USERNAME, " ");
+        await loginPage.assertRequiredErrorMessageVisible();
+    });
 });
