@@ -12,4 +12,8 @@ export class Navbar {
     async assertNavbarIsVisible() {
         await expect(this.navbar).toBeVisible();
     }
+
+    async assertTextInNavbar(text: string) {
+        await expect(this.navbar).toContainText(text);
+    }
 }
