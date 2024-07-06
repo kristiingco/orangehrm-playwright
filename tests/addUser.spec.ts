@@ -32,7 +32,7 @@ test.describe("Add new user", () => {
         await navbar.assertTextInNavbar("User Management");
     });
 
-    test("Add new user", async () => {
+    test("Add new user", async ({ page }) => {
         const newUserData = {
             username: faker.internet.userName(),
             password: faker.internet.password(),
@@ -46,6 +46,19 @@ test.describe("Add new user", () => {
             newUserData.username,
             newUserData.password
         );
+        await page.waitForURL("/web/index.php/admin/viewSystemUsers");
         await userManagementPage.assertInRecords(newUserData.username);
+    });
+
+    test("No user role selected", async () => {
+        await userManagementPage.clickAddUserButton();
+        await addUserForm.fillOutAddUserForm(
+            "-- Select --",
+            "Amelia Brown",
+            "Disabled",
+            "username123",
+            "password123"
+        );
+        await addUserForm.assertRequiredErrorVisible();
     });
 });

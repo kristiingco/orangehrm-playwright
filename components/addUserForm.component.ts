@@ -43,6 +43,9 @@ export class AddUserForm {
         await this.passwordInput.fill(password);
         await this.confirmPasswordInput.fill(password);
         await this.saveUserButton.click();
-        await this.page.waitForURL("/web/index.php/admin/viewSystemUsers");
+    }
+
+    async assertRequiredErrorVisible() {
+        await expect(this.page.getByText("required")).toHaveCount(2);
     }
 }
