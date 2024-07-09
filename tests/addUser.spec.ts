@@ -12,7 +12,15 @@ test.describe("Add new user", () => {
     let sidePanel: SidePanel;
     let userManagementPage: UserManagementPage;
     let addUserForm: AddUserForm;
-    const { VALID_USERNAME, VALID_PASSWORD } = constants;
+    const {
+        VALID_USERNAME,
+        VALID_PASSWORD,
+        NEW_USER_ROLE,
+        NEW_USER_EMPLOYEE_NAME,
+        NEW_USER_STATUS,
+        NEW_USERNAME,
+        NEW_PASSWORD,
+    } = constants;
 
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page, "/web/index.php/auth/login");
@@ -40,9 +48,9 @@ test.describe("Add new user", () => {
 
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
-            "Admin",
-            "James Butler",
-            "Disabled",
+            NEW_USER_ROLE,
+            NEW_USER_EMPLOYEE_NAME,
+            NEW_USER_STATUS,
             newUserData.username,
             newUserData.password
         );
@@ -54,10 +62,10 @@ test.describe("Add new user", () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "-- Select --",
-            "James Butler",
-            "Disabled",
-            "username123",
-            "password123"
+            NEW_USER_EMPLOYEE_NAME,
+            NEW_USER_STATUS,
+            NEW_USERNAME,
+            NEW_PASSWORD
         );
         await addUserForm.assertRequiredErrorVisible();
     });
@@ -65,11 +73,11 @@ test.describe("Add new user", () => {
     test("No employee name provided", async () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
-            "Admin",
+            NEW_USER_ROLE,
             "",
-            "Disabled",
-            "username123",
-            "password123"
+            NEW_USER_STATUS,
+            NEW_USERNAME,
+            NEW_PASSWORD
         );
         await addUserForm.assertRequiredErrorVisible();
     });
@@ -77,11 +85,11 @@ test.describe("Add new user", () => {
     test("No user role provided", async () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
-            "Admin",
-            "James Butler",
+            NEW_USER_ROLE,
+            NEW_USER_EMPLOYEE_NAME,
             "-- Select --",
-            "username123",
-            "password123"
+            NEW_USERNAME,
+            NEW_PASSWORD
         );
         await addUserForm.assertRequiredErrorVisible();
     });
@@ -89,11 +97,11 @@ test.describe("Add new user", () => {
     test("No username provided", async () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
-            "Admin",
-            "James Butler",
-            "Disabled",
+            NEW_USER_ROLE,
+            NEW_USER_EMPLOYEE_NAME,
+            NEW_USER_STATUS,
             "",
-            "password123"
+            NEW_PASSWORD
         );
         await addUserForm.assertRequiredErrorVisible();
     });
