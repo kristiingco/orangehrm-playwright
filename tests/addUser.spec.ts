@@ -41,7 +41,7 @@ test.describe("Add new user", () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "Admin",
-            "J Harvey",
+            "James Butler",
             "Disabled",
             newUserData.username,
             newUserData.password
@@ -54,7 +54,7 @@ test.describe("Add new user", () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "-- Select --",
-            "J Harvey",
+            "James Butler",
             "Disabled",
             "username123",
             "password123"
@@ -74,11 +74,23 @@ test.describe("Add new user", () => {
         await addUserForm.assertRequiredErrorVisible();
     });
 
+    test("No user role provided", async () => {
+        await userManagementPage.clickAddUserButton();
+        await addUserForm.fillOutAddUserForm(
+            "Admin",
+            "James Butler",
+            "-- Select --",
+            "username123",
+            "password123"
+        );
+        await addUserForm.assertRequiredErrorVisible();
+    });
+
     test("No username provided", async () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "Admin",
-            "J Harvey",
+            "James Butler",
             "Disabled",
             "",
             "password123"
