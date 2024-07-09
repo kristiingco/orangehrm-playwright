@@ -41,7 +41,7 @@ test.describe("Add new user", () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "Admin",
-            "Amelia Brown",
+            "J Harvey",
             "Disabled",
             newUserData.username,
             newUserData.password
@@ -54,9 +54,33 @@ test.describe("Add new user", () => {
         await userManagementPage.clickAddUserButton();
         await addUserForm.fillOutAddUserForm(
             "-- Select --",
-            "Amelia Brown",
+            "J Harvey",
             "Disabled",
             "username123",
+            "password123"
+        );
+        await addUserForm.assertRequiredErrorVisible();
+    });
+
+    test("No employee name provided", async () => {
+        await userManagementPage.clickAddUserButton();
+        await addUserForm.fillOutAddUserForm(
+            "Admin",
+            "",
+            "Disabled",
+            "username123",
+            "password123"
+        );
+        await addUserForm.assertRequiredErrorVisible();
+    });
+
+    test("No username provided", async () => {
+        await userManagementPage.clickAddUserButton();
+        await addUserForm.fillOutAddUserForm(
+            "Admin",
+            "J Harvey",
+            "Disabled",
+            "",
             "password123"
         );
         await addUserForm.assertRequiredErrorVisible();
