@@ -105,4 +105,10 @@ test.describe("Add new user", () => {
         );
         await addUserForm.assertRequiredErrorVisible();
     });
+
+    test("Cancel button redirects back to User Management Page", async () => {
+        await userManagementPage.clickAddUserButton();
+        await addUserForm.clickCancelButton();
+        await userManagementPage.assertInUserManagementPage();
+    });
 });

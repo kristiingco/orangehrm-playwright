@@ -21,6 +21,12 @@ export class UserManagementPage extends BasePage {
         await this.addUserButton.click();
     }
 
+    async assertInUserManagementPage() {
+        await expect(this.page).toHaveURL(
+            "/web/index.php/admin/viewSystemUsers"
+        );
+    }
+
     async filterUsersByRole(userRole: string) {
         await this.userRoleSelect.click();
         await this.activeListBox.getByText(userRole).click();

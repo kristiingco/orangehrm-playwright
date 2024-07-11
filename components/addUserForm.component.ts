@@ -11,6 +11,7 @@ export class AddUserForm {
     readonly confirmPasswordInput: Locator;
     readonly activeListBox: Locator;
     readonly saveUserButton: Locator;
+    readonly cancelButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -23,6 +24,9 @@ export class AddUserForm {
         this.activeListBox = page.getByRole("listbox");
         this.saveUserButton = page.getByRole("button", {
             name: "Save",
+        });
+        this.cancelButton = page.getByRole("button", {
+            name: "Cancel",
         });
     }
 
@@ -43,6 +47,10 @@ export class AddUserForm {
         await this.passwordInput.fill(password);
         await this.confirmPasswordInput.fill(password);
         await this.saveUserButton.click();
+    }
+
+    async clickCancelButton() {
+        await this.cancelButton.click();
     }
 
     async assertRequiredErrorVisible() {
