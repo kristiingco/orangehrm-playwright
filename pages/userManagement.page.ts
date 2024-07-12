@@ -6,6 +6,7 @@ export class UserManagementPage extends BasePage {
     readonly userRecordsList: Locator;
     readonly userRoleSelect: Locator;
     readonly activeListBox: Locator;
+    readonly userStatusSelect: Locator;
     readonly searchButton: Locator;
 
     constructor(page: Page, url: string) {
@@ -14,6 +15,7 @@ export class UserManagementPage extends BasePage {
         this.userRecordsList = page.getByRole("table");
         this.userRoleSelect = page.locator(".oxd-select-wrapper").nth(0);
         this.activeListBox = page.getByRole("listbox");
+        this.userStatusSelect = page.locator(".oxd-select-wrapper").nth(1);
         this.searchButton = page.getByRole("button", { name: "Search" });
     }
 
@@ -30,6 +32,12 @@ export class UserManagementPage extends BasePage {
     async filterUsersByRole(userRole: string) {
         await this.userRoleSelect.click();
         await this.activeListBox.getByText(userRole).click();
+        await this.searchButton.click();
+    }
+
+    async filterUsersByStatus(userStatus: string) {
+        await this.userStatusSelect.click();
+        await this.activeListBox.getByText(userStatus).click();
         await this.searchButton.click();
     }
 

@@ -33,4 +33,10 @@ test.describe("Filter users", () => {
         await userManagementPage.assertInRecords("ESS");
         await userManagementPage.assertNotInRecords("Admin");
     });
+
+    test("Filter users by User Status", async () => {
+        await userManagementPage.filterUsersByStatus("Enabled");
+        await userManagementPage.assertInRecords("Enabled");
+        await userManagementPage.assertNotInRecords("Disabled");
+    });
 });
