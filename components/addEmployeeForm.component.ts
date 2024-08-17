@@ -41,6 +41,10 @@ export class AddEmployeeForm {
         await this.cancelButton.click();
     }
 
+    async getEmployeeIdInput() {
+        await this.page.inputValue(".orangehrm-employee-form .oxd-input");
+    }
+
     async assertInputInEmployeeIdInput() {
         await expect(this.employeeIdInput).not.toBeEmpty();
     }
