@@ -6,6 +6,7 @@ export class AddEmployeeForm {
     readonly employeeMiddleNameInput: Locator;
     readonly employeeLastNameInput: Locator;
     readonly employeeIdInput: Locator;
+    readonly createLoginDetailsCheckbox: Locator;
     readonly saveUserButton: Locator;
     readonly cancelButton: Locator;
 
@@ -17,7 +18,7 @@ export class AddEmployeeForm {
         this.employeeIdInput = page
             .locator(".orangehrm-employee-form .oxd-input")
             .last();
-
+        this.createLoginDetailsCheckbox = page.getByRole("checkbox");
         this.saveUserButton = page.getByRole("button", {
             name: "Save",
         });
@@ -35,6 +36,10 @@ export class AddEmployeeForm {
         await this.employeeMiddleNameInput.fill(employeeMiddleName);
         await this.employeeLastNameInput.fill(employeeLastName);
         await this.saveUserButton.click();
+    }
+
+    async clickCreateLoginDetailsCheckbox() {
+        await this.createLoginDetailsCheckbox.click();
     }
 
     async clickCancelButton() {
